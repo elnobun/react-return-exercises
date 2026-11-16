@@ -1,0 +1,72 @@
+:root {
+	--sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+
+	font: 18px/145% var(--sans);
+	letter-spacing: 0.18px;
+	color: #08060d;
+	background: #fff;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	@media (max-width: 1024px) {
+		font-size: 16px;
+	}
+}
+
+#root {
+	width: 1126px;
+	max-width: 100%;
+	padding-inline: 20px;
+	margin: 0 auto;
+	min-height: 100svh;
+	display: flex;
+	flex-direction: column;
+}
+
+/* 1. Use a more intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin on most elements */
+*:not(dialog) {
+	margin: 0;
+}
+
+/* 3. Improve text rendering and line height */
+body {
+	line-height: 1.5;
+}
+
+/* 4. Make media responsive by default */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 5. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 6. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
