@@ -1,7 +1,15 @@
+import ProductsPage from "./components/ProductsPage"
+import { PRODUCTS } from "./data/products"
+
+
 function App() {
 
 	return (
-		<h1>Application running...</h1>
+		<main>
+			<div className="page">
+				<ProductsPage products={PRODUCTS} />
+			</div>
+		</main>
 	)
 }
 
