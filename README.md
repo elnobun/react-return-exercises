@@ -6,7 +6,7 @@ Weekly React and TypeScript exercises from my 16-week return to frontend develop
 
 | Week | Exercise | What it practises | Status |
 | --- | --- | --- | --- |
-| 1 | [Product list](./week-01-product-list) | Components, props, state, filtering and searching a list | In progress |
+| 1 | [Product list](./week-01-product-list) | Components, props, state, filtering and searching a list | Done |
 
 Status values: In progress · Done · Needs rework
 
