@@ -1,3 +1,4 @@
+import type { SortOption } from "../data/types"
 import { formatCategory } from "../utils/formatCategory"
 
 type SearchProps = {
@@ -5,6 +6,8 @@ type SearchProps = {
 	filterText: string,
 	filterCategory: string,
 	inStockOnly: boolean,
+	sortByPrice: SortOption,
+	onSortChange: (value: SortOption) => void,
 	onFilterTextChange: (value: string) => void,
 	onFilterCategoryChange: (value: string) => void,
 	onInStockOnlyChange: (value: boolean) => void
@@ -15,12 +18,13 @@ export default function Search({
 	filterText,
 	filterCategory,
 	inStockOnly,
+	sortByPrice,
+	onSortChange,
 	onFilterTextChange,
 	onFilterCategoryChange,
 	onInStockOnlyChange
 }: SearchProps) {
 	return (
-
 		<form className="filters" role="search">
 			<div className="field">
 				<label htmlFor="product-search">Search by name</label>
@@ -41,6 +45,17 @@ export default function Search({
 					{categories.map(category => (
 						<option key={category} value={category}>{formatCategory(category)}</option>
 					))}
+				</select>
+			</div>
+			<div className="field">
+				<label htmlFor="product-sort">Sort by</label>
+				<select
+					id="product-sort"
+					value={sortByPrice}
+					onChange={(e) => onSortChange(e.target.value as SortOption)}>
+					<option value="">Default order</option>
+					<option value="price-asc">Price: low to high</option>
+					<option value="price-desc">Price: high to low</option>
 				</select>
 			</div>
 			<div className="field field-checkbox">

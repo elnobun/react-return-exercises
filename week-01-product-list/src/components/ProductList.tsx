@@ -1,7 +1,12 @@
 import type { Product } from "../data/types";
 import ProductCard from "./ProductCard";
 
-export default function ProductList({ products }: { products: Product[] }) {
+type ProductListProps = {
+	products: Product[],
+}
+
+export default function ProductList({ products }: ProductListProps) {
+
 	return (
 		products.length > 0 ? (
 			<ul className="product-list">

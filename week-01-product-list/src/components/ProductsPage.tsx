@@ -1,5 +1,5 @@
 import { useState } from "react"
-import type { Product } from "../data/types"
+import { type SortOption, type Product } from "../data/types"
 import ProductList from "./ProductList"
 import Search from "./Search"
 import { isInStock } from "../utils/stock"
@@ -8,6 +8,7 @@ import { isInStock } from "../utils/stock"
 export default function ProductsPage({ products }: { products: Product[] }) {
 	const [filterText, setFilterText] = useState("")
 	const [filterCategory, setFilterCategory] = useState("")
+	const [sortByPrice, setSortByPrice] = useState<SortOption>("");
 	const [inStockOnly, setInStockOnly] = useState(false)
 
 	const searchText = filterText.toLowerCase().trim()
@@ -18,6 +19,12 @@ export default function ProductsPage({ products }: { products: Product[] }) {
 		const matchStock = !inStockOnly || isInStock(product)
 
 		return matchText && matchCategory && matchStock
+	})
+
+	const sortedProducts = [...filteredProducts].sort((a, b) => {
+		if (sortByPrice === "price-asc") return a.price - b.price
+		if (sortByPrice === "price-desc") return b.price - a.price
+		return 0
 	})
 
 	// Avoid duplicates in category select
@@ -34,6 +41,8 @@ export default function ProductsPage({ products }: { products: Product[] }) {
 				filterText={filterText}
 				filterCategory={filterCategory}
 				inStockOnly={inStockOnly}
+				sortByPrice={sortByPrice}
+				onSortChange={setSortByPrice}
 				onFilterTextChange={setFilterText}
 				onFilterCategoryChange={setFilterCategory}
 				onInStockOnlyChange={setInStockOnly}
@@ -42,7 +51,7 @@ export default function ProductsPage({ products }: { products: Product[] }) {
 				Showing {filteredProducts.length} of {products.length} products
 			</p>
 
-			<ProductList products={filteredProducts} />
+			<ProductList products={sortedProducts} />
 		</>
 	)
 }
