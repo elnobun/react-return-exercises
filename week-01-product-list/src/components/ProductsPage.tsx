@@ -2,16 +2,21 @@ import { useState } from "react"
 import type { Product } from "../data/types"
 import ProductList from "./ProductList"
 import Search from "./Search"
+import { isInStock } from "../data/stock"
 
 export default function ProductsPage({ products }: { products: Product[] }) {
 	const [filterText, setFilterText] = useState("")
 	const [filterCategory, setFilterCategory] = useState("")
 	const [inStockOnly, setInStockOnly] = useState(false)
 
-	const filteredProducts = products.filter((product) => {
-		const matchText = product.title.toLowerCase().includes(filterText.trim().toLowerCase())
+	const trimmedText = filterText.toLowerCase().trim()
 
-		return matchText
+	const filteredProducts = products.filter((product) => {
+		const matchText = product.title.toLowerCase().includes(trimmedText)
+		const matchCategory = filterCategory === "" || product.category === filterCategory
+		const matchStock = !inStockOnly || isInStock(product)
+
+		return matchText && matchCategory && matchStock
 	})
 
 	// Avoid duplicates in category select
