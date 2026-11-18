@@ -8,6 +8,12 @@ export default function ProductsPage({ products }: { products: Product[] }) {
 	const [filterCategory, setFilterCategory] = useState("")
 	const [inStockOnly, setInStockOnly] = useState(false)
 
+	const filteredProducts = products.filter((product) => {
+		const matchText = product.title.toLowerCase().includes(filterText.trim().toLowerCase())
+
+		return matchText
+	})
+
 	// Avoid duplicates in category select
 	const categories = Array.from(new Set(
 		products.map(product => product.category)
@@ -26,7 +32,7 @@ export default function ProductsPage({ products }: { products: Product[] }) {
 				onFilterCategoryChange={setFilterCategory}
 				onInStockOnlyChange={setInStockOnly}
 			/>
-			<ProductList products={products} />
+			<ProductList products={filteredProducts} />
 		</>
 	)
 }
