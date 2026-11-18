@@ -1,6 +1,6 @@
-import { isInStock } from "../data/stock";
 import type { Product } from "../data/types";
 import { formatCurrency } from "../utils/formatCurrency";
+import { isInStock } from "../utils/stock";
 
 
 export default function ProductCard({ product }: { product: Product }) {
