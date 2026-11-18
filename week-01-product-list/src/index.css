@@ -1,0 +1,188 @@
+	/*
+	  Design handover for the Week 1 product list.
+	  Static HTML and CSS only. Build it in React with your own components.
+	  The class names are suggestions; keep them or rename them.
+	  Three states are shown: results, a product out of stock, and no results.
+	*/
+
+	:root {
+		--text: #1f1d24;
+		--muted: #5c5766;
+		--border: #d9d6de;
+		--surface: #ffffff;
+		--page: #f6f5f8;
+		--accent: #3b2db3;
+		--danger-bg: #fbebeb;
+		--danger-text: #8a1c1c;
+		--radius: 8px;
+		--gap: 1rem;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	body {
+		margin: 0;
+		font: 16px/1.5 system-ui, 'Segoe UI', Roboto, sans-serif;
+		color: var(--text);
+		background: var(--page);
+	}
+
+	.page {
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 2rem 1.25rem;
+	}
+
+	.page h1 {
+		margin: 0 0 0.25rem;
+		font-size: 1.75rem;
+	}
+
+	.page-intro {
+		margin: 0 0 1.5rem;
+		color: var(--muted);
+	}
+
+	/* Filters */
+	.filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--gap);
+		align-items: flex-end;
+		padding: 1rem;
+		margin-bottom: 1rem;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+	}
+
+	.field {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.field label {
+		font-weight: 600;
+		font-size: 0.9rem;
+	}
+
+	.field input[type="search"],
+	.field select {
+		min-width: 14rem;
+		padding: 0.5rem 0.625rem;
+		font: inherit;
+		border: 1px solid #8c8696;
+		border-radius: 6px;
+		background: var(--surface);
+	}
+
+	.field-checkbox {
+		flex-direction: row;
+		align-items: center;
+		gap: 0.5rem;
+		padding-bottom: 0.5rem;
+	}
+
+	.field-checkbox input {
+		width: 1.125rem;
+		height: 1.125rem;
+		margin: 0;
+	}
+
+	.field-checkbox label {
+		font-weight: 400;
+		font-size: 1rem;
+	}
+
+	input:focus-visible,
+	select:focus-visible {
+		outline: 3px solid var(--accent);
+		outline-offset: 2px;
+	}
+
+	/* Count line */
+	.results-count {
+		margin: 0 0 1rem;
+		color: var(--muted);
+	}
+
+	/* Product grid */
+	.product-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+		gap: var(--gap);
+	}
+
+	.product-card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		padding: 1rem;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+	}
+
+	.product-card h2 {
+		margin: 0;
+		font-size: 1.05rem;
+		line-height: 1.3;
+	}
+
+	.product-category {
+		margin: 0;
+		color: var(--muted);
+		font-size: 0.9rem;
+		text-transform: capitalize;
+	}
+
+	.product-price {
+		margin: auto 0 0;
+		padding-top: 0.5rem;
+		font-size: 1.15rem;
+		font-weight: 700;
+	}
+
+	.stock-badge {
+		align-self: flex-start;
+		padding: 0.125rem 0.5rem;
+		font-size: 0.8rem;
+		font-weight: 600;
+		border-radius: 999px;
+		color: var(--danger-text);
+		background: var(--danger-bg);
+	}
+
+	/* Empty state */
+	.empty-state {
+		padding: 2rem 1rem;
+		text-align: center;
+		background: var(--surface);
+		border: 1px dashed var(--border);
+		border-radius: var(--radius);
+	}
+
+	.empty-state p {
+		margin: 0;
+	}
+
+	.empty-state p + p {
+		margin-top: 0.25rem;
+		color: var(--muted);
+	}
+
+	/* Only for this handover file: labels for the example states */
+	.state-label {
+		margin: 2.5rem 0 0.75rem;
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
