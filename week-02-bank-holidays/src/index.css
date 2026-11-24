@@ -1,0 +1,218 @@
+:root {
+	--text: #1f1d24;
+	--muted: #5c5766;
+	--border: #d9d6de;
+	--surface: #ffffff;
+	--page: #f6f5f8;
+	--accent: #3b2db3;
+	--accent-bg: #eeecfb;
+	--danger-bg: #fbebeb;
+	--danger-text: #8a1c1c;
+	--success-bg: #e8f5ec;
+	--success-text: #1d5e33;
+	--radius: 8px;
+	--gap: 1rem;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font: 16px/1.5 system-ui, 'Segoe UI', Roboto, sans-serif;
+	color: var(--text);
+	background: var(--page);
+}
+
+.page {
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 2rem 1.25rem;
+}
+
+.page h1 {
+	margin: 0 0 0.25rem;
+	font-size: 1.75rem;
+}
+
+.page-intro {
+	margin: 0 0 1.5rem;
+	color: var(--muted);
+}
+
+.card {
+	padding: 1rem 1.25rem;
+	margin-bottom: 1rem;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+}
+
+.card h2 {
+	margin: 0 0 0.75rem;
+	font-size: 1.2rem;
+}
+
+/* Form fields (same as Week 1) */
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	margin-bottom: 0.75rem;
+}
+
+.field label {
+	font-weight: 600;
+	font-size: 0.9rem;
+}
+
+.field-hint {
+	margin: 0;
+	color: var(--muted);
+	font-size: 0.9rem;
+}
+
+.field input,
+.field select {
+	max-width: 16rem;
+	padding: 0.5rem 0.625rem;
+	font: inherit;
+	border: 1px solid #8c8696;
+	border-radius: 6px;
+	background: var(--surface);
+}
+
+.field-error-message {
+	margin: 0;
+	color: var(--danger-text);
+	font-weight: 600;
+	font-size: 0.9rem;
+}
+
+.field.has-error input {
+	border: 2px solid var(--danger-text);
+}
+
+input:focus-visible,
+select:focus-visible,
+button:focus-visible {
+	outline: 3px solid var(--accent);
+	outline-offset: 2px;
+}
+
+.button {
+	padding: 0.5rem 1rem;
+	font: inherit;
+	font-weight: 600;
+	color: #fff;
+	background: var(--accent);
+	border: 0;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.button-secondary {
+	color: var(--accent);
+	background: var(--surface);
+	border: 1px solid var(--accent);
+}
+
+/* Loading and error */
+.status {
+	padding: 2rem 1rem;
+	text-align: center;
+}
+
+.status p {
+	margin: 0 0 0.75rem;
+}
+
+.status-error {
+	color: var(--danger-text);
+	background: var(--danger-bg);
+	border-color: #e8c4c4;
+}
+
+/* Next holiday */
+.next-holiday {
+	background: var(--accent-bg);
+	border-color: #cfc9f3;
+}
+
+.next-holiday p {
+	margin: 0;
+}
+
+.next-holiday .next-name {
+	font-size: 1.35rem;
+	font-weight: 700;
+}
+
+.next-holiday .next-when {
+	color: var(--muted);
+}
+
+/* Upcoming list */
+.holiday-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.holiday-list li {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 0.25rem 1rem;
+	padding: 0.625rem 0;
+	border-top: 1px solid var(--border);
+}
+
+.holiday-list li:first-child {
+	border-top: 0;
+}
+
+.holiday-name {
+	font-weight: 600;
+}
+
+.holiday-note {
+	color: var(--muted);
+	font-size: 0.9rem;
+}
+
+.holiday-date {
+	color: var(--muted);
+	white-space: nowrap;
+}
+
+/* Date-check result */
+.check-result {
+	margin: 1rem 0 0;
+	padding: 0.75rem 1rem;
+	border-radius: 6px;
+}
+
+.check-result p {
+	margin: 0;
+}
+
+.check-result-yes {
+	color: var(--success-text);
+	background: var(--success-bg);
+}
+
+.check-result-no {
+	background: var(--page);
+}
+
+/* Only for this handover file: labels for the example states */
+.state-label {
+	margin: 2.5rem 0 0.75rem;
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: var(--accent);
+}
