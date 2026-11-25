@@ -7,9 +7,14 @@ export interface BankHolidayEvent {
 	bunting: boolean;
 }
 
-export type BankHolidayResponse = {
+export type BankHolidaysResponse = {
 	[k in Division]: {
 		division: k;
 		events: BankHolidayEvent[]
 	}
 }
+
+export type BankHolidayState =
+	| { status: 'loading' }
+	| { status: 'error' }
+	| { status: 'success'; data: BankHolidaysResponse }
