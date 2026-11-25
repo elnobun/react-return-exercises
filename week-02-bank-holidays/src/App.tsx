@@ -1,9 +1,43 @@
+import { useEffect, useState } from "react"
+import type { BankHolidayResponse } from "./data/api"
+
 export default function App() {
+	const [holidays, setHolidays] = useState<BankHolidayResponse | null>(null)
+
+	useEffect(() => {
+		const controller = new AbortController()
+		const signal = controller.signal
+
+		async function fetchHolidays() {
+			try {
+				const response = await fetch("https://www.gov.uk/bank-holidays.json", { signal })
+
+				if (!response.ok) {
+					throw new Error(`Failed to fetch: ${response.status}`)
+				}
+
+				const responseJson: BankHolidayResponse = await response.json()
+				setHolidays(responseJson)
+			} catch (error) {
+				console.error(error)
+			}
+		}
+
+		fetchHolidays()
+
+		return () => controller.abort()
+
+	}, [])
+
+
 	return (
 		<main className="page">
 			<h1>UK bank holidays</h1>
 			<p className="page-intro">Upcoming bank holidays from GOV.UK, by region.</p>
 			<p className="state-label">State 1: loading (replaces everything below the intro)</p>
+
+			{holidays && <p>England and Wales: {holidays["england-and-wales"].events.length} bank holidays loaded</p>}
+
 
 			<div className="card status" role="status">
 				<p>Loading bank holidays…</p>
