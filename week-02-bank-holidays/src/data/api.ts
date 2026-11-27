@@ -1,5 +1,11 @@
 export type Division = "england-and-wales" | "scotland" | "northern-ireland"
 
+export const divisionLabels: Record<Division, string> = {
+	"england-and-wales": "England and Wales",
+	"scotland": "Scotland",
+	"northern-ireland": "Northern Ireland"
+}
+
 export interface BankHolidayEvent {
 	title: string;
 	date: string;

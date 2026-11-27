@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
-import type { BankHolidaysResponse, BankHolidayState } from "./data/api"
+import { divisionLabels, type BankHolidaysResponse, type BankHolidayState, type Division } from "./data/api"
 import LoadingStatus from "./components/LoadingStatus"
 import ErrorStatus from "./components/ErrorStatus"
+import { formatHolidayDate, formatRelativeDays, getTodayISO } from "./utils/formatData"
 
 export default function App() {
 	const [state, setState] = useState<BankHolidayState>({ status: 'loading' })
+	const [region, setRegion] = useState<Division>("england-and-wales")
 	const [retry, setRetry] = useState(0)
 
 	useEffect(() => {
@@ -39,7 +41,14 @@ export default function App() {
 
 	}, [retry])
 
-	const eventCount = state.status === 'success' && state.data["england-and-wales"].events.length
+	const todayISO = getTodayISO()
+	const upcomingHolidays = state.status === 'success'
+		? state.data[region].events
+			.filter((event) => event.date >= todayISO)
+			.sort((a, b) => a.date.localeCompare(b.date))
+		: []
+
+	const nextHoliday = upcomingHolidays[0]
 
 	function handleTryAgainClick() {
 		setState({ status: 'loading' })
@@ -58,50 +67,43 @@ export default function App() {
 				<ErrorStatus onTryAgain={handleTryAgainClick} />
 			) : (
 				<>
-					<p>England and Wales: {eventCount} bank holidays loaded</p>
-					<p className="state-label">State 3: loaded (today is Tuesday 24 November 2026, region England and Wales)</p>
 
 					<div className="card">
 						<div className="field">
 							<label htmlFor="region">Region</label>
-							<select id="region">
-								<option value="england-and-wales">England and Wales</option>
-								<option value="scotland">Scotland</option>
-								<option value="northern-ireland">Northern Ireland</option>
+							<select id="region"
+								value={region}
+								onChange={(e) => setRegion(e.target.value as Division)}
+							>
+								{Object.entries(divisionLabels).map(([value, label]) => (
+									<option key={value} value={value}>{label}</option>
+								))}
 							</select>
 						</div>
 					</div>
 
-					<section className="card next-holiday" aria-labelledby="next-heading">
-						<h2 id="next-heading">Next bank holiday</h2>
-						<p className="next-name">Christmas Day</p>
-						<p className="next-when">Friday 25 December 2026 · in 31 days</p>
-					</section>
+					{nextHoliday && (
+						<section className="card next-holiday" aria-labelledby="next-heading">
+							<h2 id="next-heading">Next bank holiday</h2>
+							<p className="next-name">{nextHoliday.title}</p>
+							<p className="next-when">{formatHolidayDate(nextHoliday.date)} · {formatRelativeDays(nextHoliday.date, todayISO)}</p>
+						</section>
+					)}
+
+
 
 					<section className="card" aria-labelledby="upcoming-heading">
 						<h2 id="upcoming-heading">Upcoming bank holidays</h2>
 						<ul className="holiday-list">
-							<li>
-								<span className="holiday-name">Christmas Day</span>
-								<span className="holiday-date">Friday 25 December 2026</span>
-							</li>
-							<li>
-								<span><span className="holiday-name">Boxing Day</span> <span className="holiday-note">(Substitute
-									day)</span></span>
-								<span className="holiday-date">Monday 28 December 2026</span>
-							</li>
-							<li>
-								<span className="holiday-name">New Year’s Day</span>
-								<span className="holiday-date">Friday 1 January 2027</span>
-							</li>
-							<li>
-								<span className="holiday-name">Good Friday</span>
-								<span className="holiday-date">Friday 26 March 2027</span>
-							</li>
-							<li>
-								<span className="holiday-name">Easter Monday</span>
-								<span className="holiday-date">Monday 29 March 2027</span>
-							</li>
+							{upcomingHolidays.map(holiday => (
+								<li key={holiday.date}>
+									<span>
+										<span className="holiday-name">{holiday.title}</span>{' '}
+										{holiday.notes && <span className="holiday-note">({holiday.notes})</span>}
+									</span>
+									<span className="holiday-date">{formatHolidayDate(holiday.date)}</span>
+								</li>
+							))}
 						</ul>
 					</section>
 
