@@ -206,13 +206,3 @@ button:focus-visible {
 .check-result-no {
 	background: var(--page);
 }
-
-/* Only for this handover file: labels for the example states */
-.state-label {
-	margin: 2.5rem 0 0.75rem;
-	font-size: 0.8rem;
-	font-weight: 700;
-	letter-spacing: 0.05em;
-	text-transform: uppercase;
-	color: var(--accent);
-}

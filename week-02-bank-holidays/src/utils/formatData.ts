@@ -1,3 +1,5 @@
+import type { BankHolidayEvent, DateState } from "../data/api"
+
 const dateOption = new Intl.DateTimeFormat('en-GB', {
 	weekday: 'long',
 	day: 'numeric',

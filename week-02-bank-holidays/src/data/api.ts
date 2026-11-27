@@ -24,3 +24,10 @@ export type BankHolidayState =
 	| { status: 'loading' }
 	| { status: 'error' }
 	| { status: 'success'; data: BankHolidaysResponse }
+
+export type DateState =
+	| { status: 'idle' }
+	| { status: 'dateNotSelected' }
+	| { status: 'yes'; date: string; holiday: BankHolidayEvent }
+	| { status: 'no'; date: string; nextHoliday: BankHolidayEvent | undefined }
+	| { status: 'dateOutOfRange'; bound: "before" | "after"; year: number }
