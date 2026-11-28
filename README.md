@@ -8,6 +8,7 @@ Weekly React and TypeScript exercises from my 16-week return to frontend develop
 | --- | --- | --- | --- |
 | 1 | [Product list](./week-01-product-list) | Components, props, state, filtering and searching a list | Done |
 | 2 | [Bank holidays](./week-02-bank-holidays) | Effects, fetching, loading and error states, forms, typing API data | Done |
+| 3 | [Routing and tests](./week-03-routing-and-tests) | Custom hooks, React Router, lifting state, Vitest, React Testing Library, CI | In progress |
 
 Status values: In progress · Done · Needs rework
 
