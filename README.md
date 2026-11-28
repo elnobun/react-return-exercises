@@ -7,7 +7,7 @@ Weekly React and TypeScript exercises from my 16-week return to frontend develop
 | Week | Exercise | What it practises | Status |
 | --- | --- | --- | --- |
 | 1 | [Product list](./week-01-product-list) | Components, props, state, filtering and searching a list | Done |
-| 2 | [Bank holidays](./week-02-bank-holidays) | Effects, fetching, loading and error states, forms, typing API data | In progress |
+| 2 | [Bank holidays](./week-02-bank-holidays) | Effects, fetching, loading and error states, forms, typing API data | Done |
 
 Status values: In progress · Done · Needs rework
 
